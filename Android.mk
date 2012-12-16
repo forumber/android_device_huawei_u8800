@@ -14,4 +14,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
+subdir_makefiles := \
+	$(LOCAL_PATH)/recovery/offmode/Android.mk
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
