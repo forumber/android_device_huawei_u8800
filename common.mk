@@ -96,17 +96,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     ril.subscription.types=NV,RUIM
-
-# Audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    dev.pm.dyn_sample_period=700000 \
-    dev.pm.dyn_samplingrate=1 \
-    headset.hook.delay=500
 
 # CWM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -121,33 +119,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=5m \
 
 # Display
-# We should be using mdp composition but
-# this is causing issues for 7x27a on CM
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.composition.type=mdp \
-    debug.hwc.dynThreshold=1.91 \
     debug.sf.hw=1 \
-    debug.sf.swaprect=1 \
-    gfx.highend_override=yes \
-    hwui.render_dirty_regions=true \
-    persist.sys.use_dithering=2 \
-    ro.max.fling_velocity=4000 \
     ro.opengles.version=131072 \
     ro.sf.lcd_density=240
 
 # Qualcomm
 PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true \
-    debug.composition.type=mdp \
-    hwui.render_dirty_regions.7x27A=true \
-    ro.hw_plat=7x27A \
-    ro.vendor.extension_library=/system/lib/libqc-opt.so
+    com.qc.hardware=true
 
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     ro.additionalmounts=/storage/sdcard0 \
-    ro.emmc.sdcard.partition=19 \
+    ro.emmc.sdcard.partition=14 \
     ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0 \
     ro.vold.umsdirtyratio=50
 
