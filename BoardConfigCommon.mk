@@ -1,0 +1,110 @@
+USE_CAMERA_STUB := false
+
+# CPU and Platform
+TARGET_BOARD_PLATFORM := msm7x30
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+TARGET_ARCH := arm
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_TLS_REGISTER := true
+ARCH_ARM_HAVE_NEON :=true
+ARCH_ARM_HAVE_VFP := true
+
+BOARD_USES_QCOM_HARDWARE := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# Optimisations used by Qualcomm
+TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
+TARGET_USE_SCORPION_PLD_SET := true
+TARGET_SCORPION_BIONIC_PLDOFFS := 6
+TARGET_SCORPION_BIONIC_PLDSIZE := 128
+
+TARGET_SPECIFIC_HEADER_PATH := device/huawei/msm7x30-common/include
+
+
+# Lights
+TARGET_USE_HUAWEI_LIBLIGHTS := true
+
+# Camera
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+
+# GPS
+BOARD_USES_QCOM_GPS := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7x30
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+BOARD_GPS_LIBRARIES := libloc_api
+
+# Graphics
+BOARD_EGL_CFG := device/huawei/msm7x30-common/configs/egl.cfg
+USE_OPENGL_RENDERER := true
+TARGET_USES_C2D_COMPOSITION := true
+BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
+BOARD_USE_SKIA_LCDTEXT := true
+TARGET_GRALLOC_USES_ASHMEM := true
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+
+# Qcom Display
+TARGET_NO_HW_VSYNC := true
+COMMON_GLOBAL_CFLAGS +=-DANCIENT_GL
+
+# Touchscreen
+BOARD_USE_LEGACY_TOUCHSCREEN := true
+
+# Video
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_DECODERS -DQCOM_NO_SECURE_PLAYBACK
+
+# Web Rendering
+WITH_JIT := true
+ENABLE_JSC_JIT := true
+ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true
+HTTP := chrome
+JS_ENGINE := v8
+
+# USB
+BOARD_USE_USB_MASS_STORAGE_SWITCH := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
+BOARD_VOLD_MAX_PARTITIONS := 14
+
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+
+# FM Radio
+BOARD_HAVE_FM_RADIO := true
+BOARD_FM_DEVICE := bcm4329
+BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+
+# Wi-Fi
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+#HOSTAPD_VERSION                  := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+BOARD_WLAN_DEVICE                := bcm4329
+WIFI_DRIVER_MODULE_PATH          := "/system/wifi/dhd.ko"
+WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4329.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
+WIFI_DRIVER_MODULE_NAME          :=  "dhd"
+WIFI_DRIVER_MODULE_ARG           :=  "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/wifi/nvram.txt"
+WIFI_BAND                        := 802_11_ABG
+BOARD_USE_SERNUM_FOR_MAC := true
+
+
+# Kernel 
+TARGET_KERNEL_SOURCE := kernel/huawei/honor
+BOARD_KERNEL_CMDLINE := androidboot.hardware=huawei no_console_suspend=true
+BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
+BOARD_KERNEL_BASE := 0x00200000
+BOARD_KERNEL_PAGESIZE := 4096
