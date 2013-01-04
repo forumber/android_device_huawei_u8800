@@ -105,6 +105,11 @@ PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/wifi/nvram.txt:system/wifi/nvram.txt \
     device/huawei/msm7x30-common/prebuilt/wifi/dhd.ko:system/wifi/dhd.ko
 
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329.bin:system/vendor/firmware/fw_bcm4329.bin \
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329_abg.bin:system/vendor/firmware/fw_bcm4329_abg.bin \
+    device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329_apsta.bin:system/vendor/firmware/fw_bcm4329_apsta.bin
+
 # firmware
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
