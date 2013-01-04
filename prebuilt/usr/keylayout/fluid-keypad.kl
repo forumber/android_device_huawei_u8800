@@ -18,10 +18,6 @@ key 139   MENU              WAKE
 key 217   SEARCH            WAKE_DROPPED
 key 231   CALL              WAKE_DROPPED
 key 107   ENDCALL           WAKE_DROPPED
-#/*< DTS2010120202912 wangquanli 20101203 begin */
-key 216   HW_PTT            WAKE_DROPPED
-key 213   HW_HANDFREE       WAKE_DROPPED
-#/* DTS2010120202912 wangquanli 20101203 end >*/
 #Volume functions
 key 114   VOLUME_DOWN       WAKE_DROPPED
 key 115   VOLUME_UP         WAKE_DROPPED

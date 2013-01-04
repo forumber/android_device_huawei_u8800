@@ -25,12 +25,10 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-BLUETOOTH_SLEEP_PATH=/proc/bluetooth/sleep/proto
-LOG_TAG="bcm-bluetooth"
+# /*< DTS2011012004291 xuhui 20110120 begin */
+CHIP_POWER_PATH=/sys/class/rfkill/rfkill0/state
+LOG_TAG="bcm-fm"
 LOG_NAME="${0}:"
-
-hciattach_pid=""
 
 loge ()
 {
@@ -42,39 +40,16 @@ logi ()
   /system/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
 }
 
-failed ()
+start_power ()
 {
-  loge "$1: exit code $2"
-  exit $2
+  logi "start_power +"
+  echo 1 > $CHIP_POWER_PATH
+  logi "start_power -"
+
 }
 
-start_hciattach ()
-{
-  # 1 means enable bluetooth driver sleep
-  echo 1 > $BLUETOOTH_SLEEP_PATH
-  /system/bin/brcm_patchram_plus -d --enable_hci --enable_lpm --baudrate 3000000 --bd_addr 00:18:82:23:76:1d --patchram /system/etc/bluetooth/BCM4329.hcd /dev/ttyHS0 &
-  hciattach_pid=$!
-  loge "start_hciattach: pid = $hciattach_pid"
-}
-
-kill_hciattach ()
-{
-  logi "kill_hciattach: pid = $hciattach_pid"
-  ## careful not to kill zero or null!
-  kill -TERM $hciattach_pid
-  echo 0 > $BLUETOOTH_SLEEP_PATH
-  # this shell doesn't exit now -- wait returns for normal exit
-  logi "kill_hciattach  -"
-}
-
-
-# init does SIGTERM on ctl.stop for service
-trap "kill_hciattach" TERM INT
-
-start_hciattach
-
-wait $hciattach_pid
-
-logi "Bluetooth stopped"
+start_power
 
 exit 0
+# /* DTS2011012004291 xuhui 20110120 end >*/
+

@@ -1,19 +1,21 @@
 import init.huawei.usb.rc
 
 on init
-    mkdir /storage 0775 system sdcard_r
-    mkdir /storage/sdcard1 0000 system system
-    mkdir /storage/sdcard0 0000 system system
-    export EXTERNAL_STORAGE /storage/sdcard1
-
-    symlink /storage/sdcard1 /mnt/sdcard
-    symlink /storage/sdcard1 /sdcard
-    symlink /storage/sdcard0 /mnt/emmc
-    symlink /storage/sdcard0 /HWUserData
+    # Set permissions for persist partition
+    mkdir /persist 0771 system system
+    export EXTERNAL_STORAGE /mnt/sdcard
+    # create mountpoints
+    mkdir /mnt 0775 root system
+    mkdir /HWUserData  0000 system system
+    mkdir /mnt/sdcard 0000 system system
+    mkdir /mnt/emmc 0000 system system
+# Backwards Compat - XXX: Going away in G*
+    symlink /mnt/sdcard /sdcard
+    symlink /mnt/emmc /HWUserData
+    
 
 on boot
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
-
+    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -115,18 +117,9 @@ on boot
     write /proc/sys/net/core/rmem_max  1220608
     write /proc/sys/net/core/wmem_max  1220608
 
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chmod 0644 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-
-    chown system system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-    chmod 0644 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
-    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-
 on emmc-fs
     # mount mmc partitions
+# mount mmc partitions
     wait /dev/block/mmcblk0p12
     mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
     wait /dev/block/mmcblk0p13
@@ -141,15 +134,32 @@ on emmc-fs
     mkdir /cust 
     mount ext4 loop@.cust_backup/image/cust.img /cust rw
 
+on post-fs
+    copy /proc/modem_panic /data/dontpanic/modem_panic
+    chown root log /data/dontpanic/modem_panic
+    chmod 0640 /data/dontpanic/modem_panic
 
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     chmod 0666 /sys/class/rfkill/rfkill0/state
+    mkdir /data/misc/bluetoothd/bluedroid 0776 bluetooth system 
+
+    rm /data/misc/bluetoothd/bluedroid/bluedroid_ref 
+    write /data/misc/bluetoothd/bluedroid/bluedroid_ref  0
+    chown bluetooth system /data/misc/bluetoothd/bluedroid/bluedroid_ref
+    chmod 0776 /data/misc/bluetoothd/bluedroid/bluedroid_ref
+
+    write /data/btaddr 0
+    chown bluetooth system /data/btaddr
+    chmod 0660 /data/btaddr
+
+    # <Dazzozo> Hack! That path seems hardcoded.
+    mkdir /data/misc/wifi/load 0770 wifi wifi
+    cp /system/wifi/fw_4330_b2.bin /data/misc/wifi/load/firmware.bin
 
     # Create the directories used by the Wireless subsystem
-    mkdir /data/misc/wifi/load 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
 
@@ -177,6 +187,7 @@ on post-fs-data
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
     setprop vold.post_fs_data_done 1
+    am display-size 854x480
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -250,9 +261,11 @@ service qmuxd /system/bin/qmuxd
     class main
     user radio
     group radio
+    disabled
 
 service netmgrd /system/bin/netmgrd
     class main
+    disabled
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -281,7 +294,7 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n p2p
-    class main
+    class late_start
     disabled
     oneshot
 
@@ -327,6 +340,11 @@ on property:ro.emmc=1
     start rmt_oeminfo
     start rmt_storage
 
+service qcom-sh /system/bin/sh /init.qcom.sh
+    class main
+    user root
+    oneshot
+
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class main
     user root
@@ -354,3 +372,24 @@ service map1 /system/bin/sdptool add --channel=17 MAS1
     group bluetooth net_bt_admin
     disabled
     oneshot
+
+service ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+
+service ril-daemon1 /system/bin/rild -c 1
+    class main
+    socket rild1 stream 660 root radio
+    socket rild-debug1 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+
+service setmac /system/bin/setmac
+
+on property:wlan.driver.status=loading
+    start setmac

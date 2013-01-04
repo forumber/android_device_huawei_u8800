@@ -9,10 +9,6 @@
 /dev/binder               0666   root       root
 /dev/hw_led        	  0740   system     system
 /dev/rtc0                 0600   system     system
-/dev/accel                0666   root       root
-/dev/light                0666   root       root
-/dev/proximity            0666   root       root
-/dev/compass_aot          0666   root       root
 
 # logger should be world writable (for logging) but not readable
 /dev/log/*                0662   root       log
@@ -22,9 +18,8 @@
 
 # the DIAG device node is world writable/readable.
 /dev/diag                 0666   root       root
-
 # the genlock client device node is world writable/readable.
-/dev/genlock              0666   graphics      graphics
+/dev/genlock              0666   root      root
 
 # gpu driver for adreno200 is globally accessible
 /dev/kgsl                 0666   root       root
@@ -33,10 +28,6 @@
 /dev/kgsl-2d1             0666   root       root
 
 # these should not be world writable
-
-#enable system program access the diag
-/dev/diag                 0666   radio      radio
-
 /dev/diag_arm9            0660   radio      radio
 /dev/android_adb          0660   adb        adb
 /dev/android_adb_enable   0660   adb        adb
@@ -139,7 +130,6 @@
 /dev/mdm                  0660   system     system
 /dev/ttyHSL1              0660   system     system
 /dev/tty_sdio_00          0660   system     system
-/dev/block/mmcblk0p7      0660   system     system
 /dev/block/mmcblk0p17     0660   system     system
 /dev/block/mmcblk0p18     0660   system     system
 /dev/usb_accessory        0660   root       usb
@@ -151,7 +141,6 @@
 # CDMA radio interface MUX
 /dev/ts0710mux*           0640   radio      radio
 /dev/ppp                  0660   radio      vpn
-/dev/tun                  0640   vpn        vpn
 
 # sysfs properties
 /sys/devices/virtual/input/input*   enable      0660  root   input

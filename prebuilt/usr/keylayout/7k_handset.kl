@@ -27,7 +27,3 @@
 key 226   HEADSETHOOK       WAKE
 key 116   POWER             WAKE
 key 107   ENDCALL           WAKE_DROPPED
-#/* <DTS2010092901880 liugaofei 20100929 begin */
-key 163   MEDIA_NEXT        WAKE
-key 165   MEDIA_PREVIOUS    WAKE
-#/* DTS2010092901880 liugaofei 20100929 end > */

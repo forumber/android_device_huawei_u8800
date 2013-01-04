@@ -1,31 +1,31 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, build/target/product/full_base_telephony.mk)
-# The GPS configuration appropriate for this device.
+
+# The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_as_supl.mk)
 
-$(call inherit-product-if-exists, vendor/huawei/msm7x30-common/msm7x30-common-vendor.mk)
-
-# inherit from the proprietary version
--include vendor/huawei/msm7x30-common/BoardConfigVendor.mk
+PRODUCT_LOCALES += hdpi
 
 DEVICE_PACKAGE_OVERLAYS += device/huawei/msm7x30-common/overlay
 
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
-# Video
 PRODUCT_PACKAGES += \
-    libI420colorconvert \
-    libstagefrighthw \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
     libmm-omxcore \
-    libOmxCore
-
-# Graphics
+    libdivxdrmdecrypt \
+    libstagefrighthw
+    
+# Graphics 
 PRODUCT_PACKAGES += \
-    copybit.msm7x30 \
     gralloc.msm7x30 \
+    copybit.msm7x30 \
     hwcomposer.msm7x30 \
-    libtilerenderer
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer \
+    libI420colorconvert
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -34,109 +34,108 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaudioutils
 
-# Other HALs
+# Lights
 PRODUCT_PACKAGES += \
-    power.huawei \
-    gps.msm7x30 \
     lights.msm7x30
-
-# Other Packages
+    
+# GPS
 PRODUCT_PACKAGES += \
-    dexpreopt \
-    libloc_api-rpc \
+    gps.msm7x30
+
+# Other
+PRODUCT_PACKAGES += \
+    dexpreopt
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
     make_ext4fs \
-    setup_fs \
-    e2fsck \
+    setup_fs
+    
+# Misc
+PRODUCT_PACKAGES += \
     com.android.future.usb.accessory 
 
+
+# we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
+# These are the hardware-specific features
 PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/ramdisk/init.huawei.rc:root/init.huawei.rc \
-    device/huawei/msm7x30-common/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc \
-    device/huawei/msm7x30-common/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc
-
-PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/prebuilt/fw_4330_b2.bin:system/wifi/fw_4330_b2.bin \
-    device/huawei/msm7x30-common/configs/nvram_4330.txt:system/wifi/nvram_4330.txt \
-    device/huawei/msm7x30-common/configs/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/huawei/msm7x30-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-
-PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/prebuilt/BCM4330.hcd:system/etc/bluetooth/BCM4330.hcd \
-    device/huawei/msm7x30-common/configs/init.bcm.bt.sh:system/etc/bluetooth/init.bcm.bt.sh
-
-PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    device/huawei/msm7x30-common/configs/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/huawei/msm7x30-common/configs/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/huawei/msm7x30-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/huawei/msm7x30-common/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/huawei/msm7x30-common/configs/vold.fstab:system/etc/vold.fstab
-
-PRODUCT_COPY_FILES += \
-    device/huawei/msm7x30-common/idc/synaptics.idc:system/usr/idc/synaptics.idc \
-    device/huawei/msm7x30-common/idc/qwerty.idc:system/usr/idc/qwerty.idc \
-    device/huawei/msm7x30-common/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
-    device/huawei/msm7x30-common/keychars/7x27a_kp.kcm:system/usr/keychars/7x27a_kp.kcm \
-    device/huawei/msm7x30-common/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
-    device/huawei/msm7x30-common/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    device/huawei/msm7x30-common/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/huawei/msm7x30-common/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-    device/huawei/msm7x30-common/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl
-
-# Install the features available on this device.
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
+# init
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/ramdisk/init.huawei.rc:root/init.huawei.rc \
+    device/huawei/msm7x30-common/ramdisk/init.huawei.usb.rc:root/init.huawei.usb.rc \
+    device/huawei/msm7x30-common/ramdisk/ueventd.huawei.rc:root/ueventd.huawei.rc
 
-# Radio
-PRODUCT_PROPERTY_OVERRIDES += \
-    ril.subscription.types=NV,RUIM
+# ETC
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    device/huawei/msm7x30-common/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
+    device/huawei/msm7x30-common/prebuilt/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/huawei/msm7x30-common/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
+    device/huawei/msm7x30-common/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
+    device/huawei/msm7x30-common/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
+    device/huawei/msm7x30-common/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/huawei/msm7x30-common/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
+    
+# BLUETOOTH
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/etc/bluetooth/BCM4329.hcd \
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.bt.sh:system/etc/bluetooth/init.bcm.bt.sh \
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.chip_off.sh:system/etc/bluetooth/init.bcm.chip_off.sh \
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.chip_on.sh:system/etc/bluetooth/init.bcm.chip_on.sh \
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf
+    
+# WIFI
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/huawei/msm7x30-common/prebuilt/wifi/nvram.txt:system/wifi/nvram.txt \
+    device/huawei/msm7x30-common/prebuilt/wifi/dhd.ko:system/wifi/dhd.ko
 
-# CWM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.enable_key_repeat=true
+# firmware
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/a225_pm4.fw:system/etc/firmware/a225_pm4.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/a300_pfp.fw:system/etc/firmware/a300_pfp.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/a300_pm4.fw:system/etc/firmware/a300_pm4.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_command_control.fw:system/etc/firmware/vidc_720p_command_control.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_h263_dec_mc.fw:system/etc/firmware/vidc_720p_h263_dec_mc.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_h264_dec_mc.fw:system/etc/firmware/vidc_720p_h264_dec_mc.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_h264_enc_mc.fw:system/etc/firmware/vidc_720p_h264_enc_mc.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_mp4_dec_mc.fw:system/etc/firmware/vidc_720p_mp4_dec_mc.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_mp4_enc_mc.fw:system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/vidc_720p_vc1_dec_mc.fw:system/etc/firmware/vidc_720p_vc1_dec_mc.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
+    device/huawei/msm7x30-common/prebuilt/etc/firmware/cyttsp_7630_fluid.hex:system/etc/firmware/cyttsp_7630_fluid.hex
 
-# Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1 \
-    dalvik.vm.execution-mode=int:jit \
-    dalvik.vm.heapgrowthlimit=36m \
-    dalvik.vm.heapsize=128m \
-    dalvik.vm.heapstartsize=5m \
+# KEY
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/usr/keychars/surf_keypad.kcm:system/usr/keychars/surf_keypad.kcm \
+    device/huawei/msm7x30-common/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+    device/huawei/msm7x30-common/prebuilt/usr/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
+    device/huawei/msm7x30-common/prebuilt/usr/keylayout/msm_tma300_ts.kl:system/usr/keylayout/msm_tma300_ts.kl \
+    device/huawei/msm7x30-common/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    device/huawei/msm7x30-common/prebuilt/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
+    device/huawei/msm7x30-common/prebuilt/usr/idc/atmel-rmi-touchscreen.idc:system/usr/idc/atmel-rmi-touchscreen.idc \
+    device/huawei/msm7x30-common/prebuilt/usr/idc/synaptics.idc:system/usr/idc/synaptics.idc
 
-# Display
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.hw=1 \
-    ro.opengles.version=131072 \
-    ro.sf.lcd_density=240
-
-# Qualcomm
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true
-
-# USB
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
-    ro.additionalmounts=/storage/sdcard0 \
-    ro.emmc.sdcard.partition=14 \
-    ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0 \
-    ro.vold.umsdirtyratio=50
-
-# Wi-Fi
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=eth0 \
-    wifi.supplicant_scan_interval=15
+    
+$(call inherit-product, build/target/product/full.mk)
+#$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
