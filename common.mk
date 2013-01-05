@@ -1,11 +1,30 @@
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_as_supl.mk)
-
-PRODUCT_LOCALES += hdpi
+# Copyright (C) 2012 The ShenDuOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 DEVICE_PACKAGE_OVERLAYS += device/huawei/msm7x30-common/overlay
+
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+ADDITIONAL_DEFAULT_PROPERTIES += persist.service.adb.enable=1
+
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    librs_jni
 
 PRODUCT_PACKAGES += \
     libOmxCore \
@@ -55,9 +74,51 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory 
 
-
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
+
+# Radio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ril.subscription.types=NV,RUIM \
+    ro.use_data_netmgrd=true \
+    ro.config.ehrpd=true \
+    ro.ril.shutdown=true \
+    ro.multi.rild=false
+
+# Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.camera.landscape=true \
+    debug.camcorder.disablemeta=0
+
+# USB
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb \
+    ro.additionalmounts=/storage/sdcard0 \
+    ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0 \
+    ro.emmc.sdcard.partition=14 \
+    ro.vold.umsdirtyratio=50 \
+    ro.emmc=1
+
+# dalvik vm
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=32m \
+    dalvik.vm.heapsize=80m \
+    dalvik.vm.dexopt-data-only=0
+
+# system prop for opengles version
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwc.fakevsync=true \
+    ro.opengles.version=131072 \
+    debug.sf.hw=1 \
+    com.qc.hardware=true \
+    DEVICE_PROVISIONED=1 \
+    ro.sf.lcd_density=240
+
+# Wi-Fi
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=eth0 \
+    wifi.supplicant_scan_interval=15
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -141,6 +202,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/usr/idc/atmel-rmi-touchscreen.idc:system/usr/idc/atmel-rmi-touchscreen.idc \
     device/huawei/msm7x30-common/prebuilt/usr/idc/synaptics.idc:system/usr/idc/synaptics.idc
 
-    
-$(call inherit-product, build/target/product/full.mk)
-#$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
+$(call inherit-product, device/common/gps/gps_as_supl.mk)
+$(call inherit-product, build/target/product/full_base_telephony.mk)
