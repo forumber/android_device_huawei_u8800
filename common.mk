@@ -92,7 +92,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
+    persist.sys.usb.config=mass_storage,adb \
     ro.additionalmounts=/storage/sdcard0 \
     ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0 \
     ro.emmc.sdcard.partition=14 \
@@ -108,7 +108,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # system prop for opengles version
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwc.fakevsync=true \
+    debug.hwc.fakevsync=1 \
     ro.opengles.version=131072 \
     debug.sf.hw=1 \
     com.qc.hardware=true \
