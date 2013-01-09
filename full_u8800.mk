@@ -51,33 +51,11 @@ PRODUCT_PACKAGES += \
 
 # Video
 PRODUCT_PACKAGES += \
-	copybit.msm7x30 \
-	gralloc.msm7x30 \
-	hwcomposer.msm7x30 \
 	libgenlock \
 	libmemalloc \
 	liboverlay \
 	libQcomUI \
 	libtilerenderer
-
-# Media
-PRODUCT_PACKAGES += \
-	libOmxCore \
-	libOmxVenc \
-	libOmxVdec \
-	libmm-omxcore \
-	libdivxdrmdecrypt \
-	libstagefrighthw
-
-# GPS
-PRODUCT_PACKAGES += \
-	gps.u8800
-
-# Lights
-PRODUCT_PACKAGES += \
-	lights.msm7x30
-
-# Sensors (Prebuilt)
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
