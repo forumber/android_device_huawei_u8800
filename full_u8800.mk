@@ -47,15 +47,7 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-	audio.a2dp.default \
-	audio_policy.msm7x30 \
-	audio.primary.msm7x30 \
 	libaudioutils
-
-# Camera
-PRODUCT_PACKAGES += \
-	camera.msm7x30 \
-	libcamera
 
 # Video
 PRODUCT_PACKAGES += \
