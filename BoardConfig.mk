@@ -116,7 +116,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 #BOARD_USES_BOOTMENU := true
 BOARD_MMC_DEVICE := /dev/block/mmcblk0
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p13
-BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p14
+BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p12
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1p1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 
@@ -157,7 +157,6 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/huawei/u8800/releasetools/
 
 # ETC
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/u8800/include
-
 TARGET_COMPRESS_MODULE_SYMBOLS := false
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
