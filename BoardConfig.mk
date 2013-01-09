@@ -76,8 +76,8 @@ BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=qcom
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
-TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/u8800/recovery_kernel
-TARGET_PREBUILT_KERNEL := device/huawei/u8800/recovery_kernel
+TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/u8800/kernel
+TARGET_PREBUILT_KERNEL := device/huawei/u8800/kernel
 
 # Wifi
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -95,7 +95,7 @@ WIFI_DRIVER_FW_PATH_AP  := "/system/etc/firmware/wlan"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
 BOARD_WLAN_DEVICE := qcwcn
 
-# Sensors
+# BT
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := false
 
