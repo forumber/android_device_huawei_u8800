@@ -31,10 +31,12 @@
 /dev/diag_arm9            0660   radio      radio
 /dev/android_adb          0660   adb        adb
 /dev/android_adb_enable   0660   adb        adb
-/dev/ttyMSM0              0600   bluetooth  bluetooth
-/dev/ttyHS0               0600   bluetooth  bluetooth
+
+/dev/ttyHS0               0660   bluetooth  net_bt_stack
+/dev/ttyMSM0              0600   bluetooth  net_bt_stack
+/dev/uinput               0660   system     system
+
 /dev/ttyGS0               0660   system     system
-/dev/uinput               0660   system     bluetooth
 /dev/alarm                0664   system     radio
 /dev/tty0                 0660   root       system
 /dev/graphics/fb1         0660   system     graphics

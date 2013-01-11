@@ -26,6 +26,7 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     librs_jni
 
+# Video
 PRODUCT_PACKAGES += \
     libOmxCore \
     libOmxVenc \
@@ -155,10 +156,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/etc/bluetooth/BCM4329.hcd \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.bt.sh:system/etc/bluetooth/init.bcm.bt.sh \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.chip_off.sh:system/etc/bluetooth/init.bcm.chip_off.sh \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.chip_on.sh:system/etc/bluetooth/init.bcm.chip_on.sh \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
     device/huawei/msm7x30-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
     
 # WIFI
