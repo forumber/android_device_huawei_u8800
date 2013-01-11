@@ -163,8 +163,7 @@ PRODUCT_COPY_FILES += \
 # WIFI
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/huawei/msm7x30-common/prebuilt/wifi/nvram.txt:system/wifi/nvram.txt \
-    device/huawei/msm7x30-common/prebuilt/wifi/dhd.ko:system/wifi/dhd.ko
+    device/huawei/msm7x30-common/prebuilt/wifi/nvram.txt:system/vendor/firmware/nvram.txt
 
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329.bin:system/vendor/firmware/fw_bcm4329.bin \
