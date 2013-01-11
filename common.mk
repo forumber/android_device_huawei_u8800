@@ -158,7 +158,8 @@ PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.bt.sh:system/etc/bluetooth/init.bcm.bt.sh \
     device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.chip_off.sh:system/etc/bluetooth/init.bcm.chip_off.sh \
     device/huawei/msm7x30-common/prebuilt/etc/bluetooth/init.bcm.chip_on.sh:system/etc/bluetooth/init.bcm.chip_on.sh \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
+    device/huawei/msm7x30-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
     
 # WIFI
 PRODUCT_COPY_FILES += \
