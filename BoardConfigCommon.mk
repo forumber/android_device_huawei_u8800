@@ -53,11 +53,11 @@ BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 
 # Qcom/Display
 TARGET_USES_ION := false
-TARGET_NO_HW_OVERLAY := true
+#TARGET_NO_HW_OVERLAY := true
 TARGET_NO_HW_VSYNC := true
 TARGET_NO_HDMI := true
-BOARD_EGL_NEEDS_LEGACY_FB := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS :=3
+#BOARD_EGL_NEEDS_LEGACY_FB := true
+#NUM_FRAMEBUFFER_SURFACE_BUFFERS :=3
 COMMON_GLOBAL_CFLAGS += -DGENLOCK_IOC_DREADLOCK -DANCIENT_GL
 
 WITH_JIT := true
@@ -84,7 +84,6 @@ BOARD_USE_SERNUM_FOR_MAC := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/msm7x30-common/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/msm7x30-common/bluetooth/vnd_msm7x30.txt
 
 # GPS
 BOARD_USES_QCOM_GPS := true
@@ -114,11 +113,11 @@ BOARD_VOLD_MAX_PARTITIONS := 14
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_CHARGEMODE := true
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
+BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 TARGET_RECOVERY_INITRC := device/huawei/msm7x30-common/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := device/huawei/msm7x30-common/recovery_recovery.fstab
 BOARD_RECOVERY_RMT_STORAGE := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/msm7x30-common/recovery/graphics_cn.c
+#BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/msm7x30-common/recovery/graphics_cn.c
 TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/msm7x30-common/recovery_kernel
 
 # Custom releasetools for old partition table.

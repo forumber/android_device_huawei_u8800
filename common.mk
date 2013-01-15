@@ -45,7 +45,8 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libQcomUI \
     libtilerenderer \
-    libI420colorconvert
+    libI420colorconvert \
+    libc2dcolorconvert
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -110,6 +111,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # system prop for opengles version
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.fakevsync=1 \
+    debug.composition.type=gpu \
     ro.opengles.version=131072 \
     debug.sf.hw=1 \
     com.qc.hardware=true \
@@ -155,7 +157,7 @@ PRODUCT_COPY_FILES += \
 # BLUETOOTH
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/etc/bluetooth/BCM4329.hcd \
+    device/huawei/msm7x30-common/prebuilt/etc/bluetooth/BCM4329.hcd:system/vendor/firmware/BCM4329.hcd \
     device/huawei/msm7x30-common/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
     
 # WIFI
