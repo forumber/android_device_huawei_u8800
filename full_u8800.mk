@@ -44,6 +44,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # Camera
 PRODUCT_PACKAGES += \
 	Camera
+	camera.msm7x30
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -52,10 +53,6 @@ PRODUCT_PACKAGES += \
 	audio.primary.msm7x30 \
 	libaudioutils
 
-# Camera
-PRODUCT_PACKAGES += \
-	camera.msm7x30 \
-	libcamera
 
 # Video
 PRODUCT_PACKAGES += \
