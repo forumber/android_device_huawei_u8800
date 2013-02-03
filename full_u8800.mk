@@ -82,8 +82,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	lights.msm7x30
 
-# Sensors (Prebuilt)
-
 # Live Wallpapers
 PRODUCT_PACKAGES += \
 	LiveWallpapers \
