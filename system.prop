@@ -49,6 +49,6 @@ ro.qualcomm.bluetooth.dun=true
 #
 # system prop for internal and external SD and SD card emulation of emmc partition
 #
-ro.additionalmounts=/mnt/emmc
-ro.vold.switchablepair=/mnt/sdcard,/mnt/emmc
+ro.additionalmounts=/HWUserData
+ro.vold.switchablepair=/mnt/sdcard,/HWUserData
 ro.emmc.sdcard.partition=16

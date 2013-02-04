@@ -40,7 +40,7 @@
     		 android:removable="true"
     		 android:allowMassStorage="true" />
 
-    <storage android:mountPoint="/mnt/emmc"
+    <storage android:mountPoint="/HWUserData"
     		 android:storageDescription="@string/storage_internal"
     		 android:primary="false"
     		 android:removable="false"
