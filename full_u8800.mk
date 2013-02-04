@@ -43,7 +43,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-	Camera
+	Camera \
 	camera.msm7x30
 
 # Audio
