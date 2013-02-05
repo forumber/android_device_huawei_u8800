@@ -3,8 +3,6 @@ BUILD_LIBCAMERA:=true
 # When zero we link against libmmcamera; when 1, we dlopen libmmcamera.
 DLOPEN_LIBMMCAMERA:=1
 
-ifneq ($(BUILD_TINY_ANDROID),true)
-
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
