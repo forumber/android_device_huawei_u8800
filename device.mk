@@ -35,12 +35,16 @@ PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
+# Ramdisk
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/init.emmc.rc:root/init.emmc.rc \
-	$(LOCAL_PATH)/init.qcom.rc:root/init.qcom.rc \
-	$(LOCAL_PATH)/init.target.rc:root/init.target.rc \
+	$(LOCAL_PATH)/init.rc:root/init.rc \
+	$(LOCAL_PATH)/init.u8800.rc:root/init.u8800.rc \
+	$(LOCAL_PATH)/init.huawei.rc:root/init.huawei.rc \
+	$(LOCAL_PATH)/init.qcom.sh:root/init.qcom.sh \
 	$(LOCAL_PATH)/init.qcom.usb.rc:root/init.qcom.usb.rc \
-	$(LOCAL_PATH)/ueventd.qcom.rc:root/ueventd.qcom.rc
+	$(LOCAL_PATH)/initlogo.rle:root/initlogo.rle \
+	$(LOCAL_PATH)/ueventd.rc:root/ueventd.rc \
+	$(LOCAL_PATH)/init.qcom.usb.sh:root/init.qcom.usb.sh
 
 # Include initscripts
 $(call inherit-product-if-exists, device/huawei/u8800/initscripts/initscripts.mk)
