@@ -70,8 +70,10 @@ WEBCORE_INPAGE_VIDEO := true
 TARGET_HAVE_TSLIB := true
 BOARD_EGL_CFG := device/huawei/u8800/egl.cfg
 
-# Kernel
+# Radio class.
+BOARD_RIL_CLASS := ../../../device/huawei/u8800/ril/
 
+# Kernel
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=qcom
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
 BOARD_KERNEL_BASE := 0x00200000
