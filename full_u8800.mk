@@ -76,10 +76,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	gps.u8800
 
-# Lights
-PRODUCT_PACKAGES += \
-	lights.msm7x30
-
 # Live Wallpapers
 PRODUCT_PACKAGES += \
 	LiveWallpapers \
