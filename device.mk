@@ -42,14 +42,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.qcom.usb.rc:root/init.qcom.usb.rc \
 	$(LOCAL_PATH)/ueventd.qcom.rc:root/ueventd.qcom.rc
 
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-	$(LOCAL_PATH)/hostapd_default.conf:system/etc/hostapd_default.conf \
-	$(LOCAL_PATH)/media_profiles.xml:/system/etc/media_profiles.xml
-
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab
-
 # Include initscripts
 $(call inherit-product-if-exists, device/huawei/u8800/initscripts/initscripts.mk)
 
