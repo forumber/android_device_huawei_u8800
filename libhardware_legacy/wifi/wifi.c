@@ -977,6 +977,42 @@ static int ensure_wlan_driver_config_file_exists()
     return 0;
 }
 
+
+int is_wifi_hotspot_driver_loaded() {
+#ifndef WIFI_AP_DRIVER_MODULE_PATH
+    return is_wifi_driver_loaded();
+#else
+    char driver_status[PROPERTY_VALUE_MAX];
+    FILE *proc;
+    char line[sizeof(AP_DRIVER_MODULE_TAG)+10];
+
+    if (!property_get(AP_DRIVER_PROP_NAME, driver_status, NULL)
+            || strcmp(driver_status, "ok") != 0) {
+        return 0; /* driver not loaded */
+    }
+    /*
+* If the property says the driver is loaded, check to
+* make sure that the property setting isn't just left
+* over from a previous manual shutdown or a runtime
+* crash.
+*/
+    if ((proc = fopen(MODULE_FILE, "r")) == NULL) {
+        LOGW("Could not open %s: %s", MODULE_FILE, strerror(errno));
+        property_set(AP_DRIVER_PROP_NAME, "unloaded");
+        return 0;
+    }
+    while ((fgets(line, sizeof(line), proc)) != NULL) {
+        if (strncmp(line, AP_DRIVER_MODULE_TAG, strlen(AP_DRIVER_MODULE_TAG)) == 0) {
+            fclose(proc);
+            return 1;
+        }
+    }
+    fclose(proc);
+    property_set(AP_DRIVER_PROP_NAME, "unloaded");
+    return 0;
+#endif
+}
+
 int wifi_unload_hotspot_driver()
 {
 #ifndef WIFI_AP_DRIVER_MODULE_PATH
