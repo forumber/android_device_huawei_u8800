@@ -79,7 +79,6 @@ TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/u8800/kernel
 TARGET_PREBUILT_KERNEL := device/huawei/u8800/kernel
 
 # Wifi
-TARGET_CUSTOM_WIFI := ../../device/huawei/u8800/libhardware_legacy/wifi/wifi.c
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION := VER_0_8_X
