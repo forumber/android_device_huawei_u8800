@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import com.android.internal.telephony.RILConstants;
 import com.android.internal.telephony.gsm.SmsBroadcastConfigInfo;
 import com.android.internal.telephony.cdma.CdmaInformationRecords;
+import com.android.internal.telephony.DataConnection.FailCause;
 
 import java.util.ArrayList;
 
@@ -232,61 +233,31 @@ public class HuaweiQualcommRIL extends QualcommSharedRIL implements CommandsInte
     protected DataCallState
     getDataCallState(Parcel p, int version) {
         DataCallState dataCall = new DataCallState();
+        String response[] = (String []) responseStrings(p);
 
-        boolean oldRil = needsOldRilFeature("datacall");
-
-        if (!oldRil && version < 5) {
-            return super.getDataCallState(p, version);
-        } else if (!oldRil) {
-            dataCall.version = version;
-            dataCall.status = p.readInt();
-            if(!needsOldRilFeature("skipsuggestedretrytime")) {
-                dataCall.suggestedRetryTime = p.readInt();
-            }
-            dataCall.cid = p.readInt();
-            dataCall.active = p.readInt();
-            dataCall.type = p.readString();
-            dataCall.ifname = p.readString();
-            if ((dataCall.status == DataConnection.FailCause.NONE.getErrorCode()) &&
-                    TextUtils.isEmpty(dataCall.ifname) && dataCall.active != 0) {
-              throw new RuntimeException("getDataCallState, no ifname");
-            }
-            String addresses = p.readString();
-            if (!TextUtils.isEmpty(addresses)) {
-                dataCall.addresses = addresses.split(" ");
-            }
-            String dnses = p.readString();
-            if (!TextUtils.isEmpty(dnses)) {
-                dataCall.dnses = dnses.split(" ");
-            }
-            String gateways = p.readString();
-            if (!TextUtils.isEmpty(gateways)) {
-                dataCall.gateways = gateways.split(" ");
-            }
-        } else {
-            dataCall.version = 4; // was dataCall.version = version;
-            dataCall.cid = p.readInt();
-            dataCall.active = p.readInt();
-            dataCall.type = p.readString();
-            dataCall.ifname = mLastDataIface[dataCall.cid];
-            p.readString(); // skip APN
-
+        if (response.length >= 2)
+        {
+            dataCall = new DataCallState();
+            dataCall.version = 3;
+            dataCall.cid = Integer.parseInt(response[0]);
+            dataCall.ifname = response[1];
             if (TextUtils.isEmpty(dataCall.ifname)) {
-                dataCall.ifname = mLastDataIface[0];
+                throw new RuntimeException(
+                        "RIL_REQUEST_SETUP_DATA_CALL response, no ifname");
             }
-
-            String addresses = p.readString();
+            String addresses = response[2];
             if (!TextUtils.isEmpty(addresses)) {
                 dataCall.addresses = addresses.split(" ");
             }
-            p.readInt(); // RadioTechnology
-            p.readInt(); // inactiveReason
 
             dataCall.dnses = new String[2];
             dataCall.dnses[0] = SystemProperties.get("net."+dataCall.ifname+".dns1");
             dataCall.dnses[1] = SystemProperties.get("net."+dataCall.ifname+".dns2");
         }
-
+        else
+        {
+            dataCall.status = FailCause.ERROR_UNSPECIFIED.getErrorCode();
+        }
         return dataCall;
     }
 }
