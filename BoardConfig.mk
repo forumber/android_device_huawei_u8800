@@ -160,3 +160,11 @@ TARGET_COMPRESS_MODULE_SYMBOLS := false
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 BOARD_ALWAYS_INSECURE := true
+
+# Web Rendering
+WITH_JIT := true
+ENABLE_JSC_JIT := true
+ENABLE_WEBGL := true
+HTTP := chrome
+JS_ENGINE := v8
+TARGET_FORCE_CPU_UPLOAD := true
