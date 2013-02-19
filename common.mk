@@ -29,10 +29,8 @@ PRODUCT_PACKAGES += \
 # Video
 PRODUCT_PACKAGES += \
     libOmxCore \
-    libOmxVenc \
     libOmxVdec \
     libmm-omxcore \
-    libdivxdrmdecrypt \
     libstagefrighthw
     
 # Graphics 
@@ -170,7 +168,7 @@ PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329_abg.bin:system/vendor/firmware/fw_bcm4329_abg.bin \
     device/huawei/msm7x30-common/prebuilt/vendor/firmware/fw_bcm4329_apsta.bin:system/vendor/firmware/fw_bcm4329_apsta.bin
 
-# firmware
+# Firmware
 PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
     device/huawei/msm7x30-common/prebuilt/etc/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
@@ -200,6 +198,12 @@ PRODUCT_COPY_FILES += \
     device/huawei/msm7x30-common/prebuilt/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
     device/huawei/msm7x30-common/prebuilt/usr/idc/atmel-rmi-touchscreen.idc:system/usr/idc/atmel-rmi-touchscreen.idc \
     device/huawei/msm7x30-common/prebuilt/usr/idc/synaptics.idc:system/usr/idc/synaptics.idc
+
+# Video and Omx
+PRODUCT_COPY_FILES += \
+    device/huawei/msm7x30-common/prebuilt/lib/libdivxdrmdecrypt.so:system/lib/libdivxdrmdecrypt.so \
+    device/huawei/msm7x30-common/prebuilt/lib/libOmxVenc.so:system/lib/libOmxVenc.so \
+    device/huawei/msm7x30-common/prebuilt/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
