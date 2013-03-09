@@ -40,7 +40,6 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.rc:root/init.rc \
-	$(LOCAL_PATH)/init.u8800.rc:root/init.u8800.rc \
 	$(LOCAL_PATH)/init.huawei.rc:root/init.huawei.rc \
 	$(LOCAL_PATH)/init.qcom.sh:root/init.qcom.sh \
 	$(LOCAL_PATH)/init.qcom.usb.rc:root/init.qcom.usb.rc \
