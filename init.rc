@@ -19,10 +19,10 @@ loglevel 3
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export LD_LIBRARY_PATH /vendor/lib:/system/lib
     export ANDROID_BOOTLOGO 1
-    export ANDROID_CACHE /cache
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /mnt/sdcard
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/filterfw.jar
@@ -118,11 +118,11 @@ on fs
 on emmc-fs
 # mount mmc partitions
     wait /dev/block/mmcblk0p12
-    mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
+    mount ext4 /dev/block/mmcblk0p12 /system rw barrier=1
     wait /dev/block/mmcblk0p13
     exec /system/bin/e2fsck -p /dev/block/mmcblk0p13
-    mount ext4 /dev/block/mmcblk0p13 /data nosuid nodev barrier=1 noauto_da_alloc noatime nomblk_io_submit
-    mount ext4 /dev/block/mmcblk0p6 /cache nosuid nodev barrier=1 noauto_da_alloc noatime nomblk_io_submit
+    mount ext4 /dev/block/mmcblk0p13 /data rw nosuid nodev barrier=1 noauto_da_alloc noatime nomblk_io_submit
+    mount ext4 /dev/block/mmcblk0p6 /cache rw nosuid nodev barrier=1 noauto_da_alloc noatime nomblk_io_submit
     wait /dev/block/mmcblk0p14
     mount vfat /dev/block/mmcblk0p14 /HWUserData uid=1000,gid=1015,umask=0002,utf8
     mkdir /.cust_backup
@@ -207,7 +207,12 @@ on post-fs-data
 
     # create dalvik-cache, so as to enforce our permissions
     mkdir /data/dalvik-cache 0771 system system
-
+	chown system system /data/dalvik-cache
+	chmod 0771 /data/dalvik-cache
+	mkdir /cache/dalvik-cache 0771 system system
+	chown system system /cache/dalvik-cache
+	chmod 0771 /cache/dalvik-cache
+	
     # create resource-cache and double-check the perms
     mkdir /data/resource-cache 0771 system system
     chown system system /data/resource-cache
