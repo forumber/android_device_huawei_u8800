@@ -53,6 +53,9 @@ PRODUCT_PACKAGES += \
 	audio.primary.msm7x30 \
 	libaudioutils
 
+# Lights
+PRODUCT_PACKAGES += \
+	lights.u8800
 
 # Video
 PRODUCT_PACKAGES += \
