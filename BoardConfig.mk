@@ -71,7 +71,7 @@ TARGET_HAVE_TSLIB := true
 BOARD_EGL_CFG := device/huawei/u8800/egl.cfg
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
