@@ -37,9 +37,9 @@ PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/init.rc:root/init.rc \
 	$(LOCAL_PATH)/init.huawei.rc:root/init.huawei.rc \
 	$(LOCAL_PATH)/init.qcom.sh:root/init.qcom.sh \
 	$(LOCAL_PATH)/init.qcom.usb.rc:root/init.qcom.usb.rc \
