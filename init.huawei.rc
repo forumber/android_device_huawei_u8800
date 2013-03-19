@@ -135,7 +135,7 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
 service cnd /system/bin/cnd
-    class late_start
+    class main
     socket cnd stream 660 root radio
 
 on property:persist.cne.UseCne=vendor
@@ -145,7 +145,7 @@ on property:persist.cne.UseCne=Vendor
     start cnd
 
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11 /dev/block/mmcblk0p17
-    class late_start
+    class main
     user root
     disabled
 
@@ -153,38 +153,38 @@ on property:ro.emmc=1
     start rmt_storage
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
-    class late_start
+    class main
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin
     disabled
     oneshot
 
 service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
-    class late_start
+    class main
     disabled
     oneshot
 
 service bt-sap /system/bin/sapd 15
-    class late_start
+    class main
     disabled
     oneshot
 
 service sapd /system/bin/sdptool add --channel=15 SAP
-    class late_start
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 
 service dund /system/bin/sdptool add --channel=1 DUN
-    class late_start
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 
 service bridgemgrd /system/bin/bridgemgrd
-    class late_start
+    class main
     user radio
     group radio
     disabled
@@ -200,7 +200,7 @@ on property:ro.baseband="msm"
     setprop ro.qualcomm.bluetooth.dun true
 
 service qmiproxy /system/bin/qmiproxy
-    class late_start
+    class main
     user radio
     group radio
     disabled
@@ -210,7 +210,7 @@ service qmuxd /system/bin/qmuxd
     group radio
 
 service netmgrd /system/bin/netmgrd
-    class late_start
+    class main
     disabled
 
 service compassd /system/bin/compassd
@@ -225,14 +225,14 @@ on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
 
 service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-    class late_start
+    class main
     user bluetooth
     group bluetooth net_bt_admin inet net_admin net_raw
     disabled
     oneshot
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -dd
-    class late_start
+    class main
     user root
     group wifi inet
     socket wpa_wlan0 dgram 660 wifi wifi
@@ -240,27 +240,27 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dnl802
     oneshot
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -BKL
-    class late_start
+    class main
     disabled
     oneshot
 
 service dhcpcd_p2p /system/bin/dhcpcd -BKL
-    class late_start
+    class main
     disabled
     oneshot
 
 service iprenew_wlan0 /system/bin/dhcpcd -n
-    class late_start
+    class main
     disabled
     oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n p2p
-    class late_start
+    class main
     disabled
     oneshot
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -BKL
-    class late_start
+    class main
     disabled
     oneshot
 
@@ -270,25 +270,25 @@ service wiperiface /system/bin/wiperiface
     oneshot
 
 service gpsone_daemon /system/bin/gpsone_daemon
-    class late_start
+    class main
     user root
     group qcom_oncrpc
     disabled
 
 service quipc_igsn /system/bin/quipc_igsn
-    class late_start
+    class main
     user gps
     group inet gps
     disabled
 
 service quipc_main /system/bin/quipc_main
-    class late_start
+    class main
     user gps
     group net_admin wifi inet gps
     disabled
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
+    class main
     user root
     group system qcom_oncrpc
     disabled
@@ -303,25 +303,25 @@ on property:crypto.driver.load=0
      exec /system/bin/rmmod qce.ko
 
 service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
+    class main
     user root
     oneshot
 
 service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-    class late_start
+    class main
     user root
     disabled
     oneshot
 
 service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
-    class late_start
+    class main
     oneshot
 
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
 
 #service atfwd /system/bin/ATFWD-daemon
-#    class late_start
+#    class main
 #    user system
 #    group system radio
 #    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
@@ -331,7 +331,7 @@ on property:init.svc.bootanim=stopped
 #    disabled
 
 service oem_rpc_svc /system/bin/oem_rpc_svc
-    class late_start
+    class main
     user system
     group system
 
@@ -339,18 +339,18 @@ service oem_rpc_svc /system/bin/oem_rpc_svc
 #    start hdmid
 
 service abld /system/bin/mm-abl-daemon
-    class late_start
+    class main
     disabled
 
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
-    class late_start
+    class main
     user root
     group root
     oneshot
     disabled
 
 service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
-    class late_start
+    class main
     group radio
     disabled
     oneshot
@@ -359,7 +359,7 @@ on property:persist.data.ds_fmc_app.mode=1
     start ds_fmc_appd
 
 service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-    class late_start
+    class main
     user system
     group qcom_oncrpc net_bt_admin inet radio wifi
     disabled
@@ -368,7 +368,7 @@ on property:persist.ims.regmanager.mode=1
     start ims_regmanager
 
 service thermald /system/bin/thermald
-    class late_start
+    class main
     user root
     group root
     disabled
@@ -377,7 +377,7 @@ on property:persist.thermal.monitor=true
     start thermald
 
 service time_daemon /system/bin/time_daemon
-    class late_start
+    class main
     user root
     group root
     oneshot
@@ -387,28 +387,28 @@ on property:persist.timed.enable=true
     start time_daemon
 
 service ftp /system/bin/sdptool add --psm=5257 --channel=20 FTP
-    class late_start
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 
 service map0 /system/bin/sdptool add --channel=16 MAS0
-    class late_start
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 
 service map1 /system/bin/sdptool add --channel=17 MAS1
-    class late_start
+    class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
 
 service ril-daemon1 /system/bin/rild -c 1
-    class late_start
+    class main
     socket rild1 stream 660 root radio
     socket rild-debug1 stream 660 radio system
     user root
@@ -416,13 +416,13 @@ service ril-daemon1 /system/bin/rild -c 1
     group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
 
 service profiler_daemon /system/bin/profiler_daemon
-    class late_start
+    class main
     user root
     group root
     disabled
 
 service sdcard /system/bin/sdcard /data/media 1023 1023
-    class late_start
+    class main
     disabled
 
 on property:persist.fuse_sdcard=true
