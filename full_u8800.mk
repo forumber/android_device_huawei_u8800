@@ -91,7 +91,7 @@ PRODUCT_PACKAGES += \
 	setup_fs
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_u8800
+PRODUCT_NAME := u8800
 PRODUCT_DEVICE := u8800
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := Full Android on U8800
+PRODUCT_BRAND := Huawei
+PRODUCT_MODEL := U8800
