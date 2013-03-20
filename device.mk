@@ -40,12 +40,12 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/init.huawei.rc:root/init.huawei.rc \
-	$(LOCAL_PATH)/init.qcom.sh:root/init.qcom.sh \
-	$(LOCAL_PATH)/init.qcom.usb.rc:root/init.qcom.usb.rc \
-	$(LOCAL_PATH)/initlogo.rle:root/initlogo.rle \
-	$(LOCAL_PATH)/ueventd.rc:root/ueventd.rc \
-	$(LOCAL_PATH)/init.qcom.usb.sh:root/init.qcom.usb.sh
+	$(LOCAL_PATH)/ramdisk/init.huawei.rc:root/init.huawei.rc \
+	$(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
+	$(LOCAL_PATH)/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
+	$(LOCAL_PATH)/ramdisk/initlogo.rle:root/initlogo.rle \
+	$(LOCAL_PATH)/ramdisk/ueventd.rc:root/ueventd.rc \
+	$(LOCAL_PATH)/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh
 
 # Include initscripts
 $(call inherit-product-if-exists, device/huawei/u8800/initscripts/initscripts.mk)
