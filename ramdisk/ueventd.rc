@@ -7,9 +7,7 @@
 /dev/urandom              0666   root       root
 /dev/ashmem               0666   root       root
 /dev/binder               0666   root       root
-#/* < DTS2011072705129  xiangxu 20110728 begin */
 /dev/hw_led        	  0740   system     system
-#/* DTS2011072705129  xiangxu 20110728 end > */ 
 
 # logger should be world writable (for logging) but not readable
 /dev/log/*                0662   root       log
@@ -35,12 +33,7 @@
 /dev/uinput               0660   system     bluetooth
 /dev/alarm                0664   system     radio
 /dev/tty0                 0660   root       system
-#/* < DTS2011052606009 jiaxianghong 20110527 begin */
-# /*< DTS2011051901683 lijianzhao 20110519 begin */
-# /* change popedom of fb1 to system */
 /dev/graphics/fb1         0660   system     graphics
-# /* DTS2011051901683 lijianzhao 20110519 end >*/
-#/* < DTS2011052606009 jiaxianghong 20110527 end */
 /dev/graphics/*           0660   root       graphics
 /dev/msm_hw3dm            0660   system     graphics
 /dev/msm_rotator          0660   system     graphics
@@ -52,9 +45,7 @@
 /dev/pmem_adsp*           0660   system     audio
 /dev/pmem_smipool*        0660   system     camera
 /dev/pmem_camera*         0660   system     camera
-#/*<DTS2010072602089 haiwenhui 20100726 begin*/
 /dev/oncrpc/*             0666   root       system
-#/*DTS2010072602089 haiwenhui 20100726 end>*/
 /dev/adsp/*               0660   system     audio
 /dev/snd/*                0660   system     audio
 /dev/mt9t013              0660   system     system
@@ -91,9 +82,7 @@
 /dev/msm_pcm_lp_dec       0660   system     audio
 /dev/smd0                 0640   radio      radio
 /dev/smd7                 0640   radio      radio
-#/* < DTS2011070601052 zhaojunmin 20110705 begin */
 /dev/smd17                0600   system     system
-#/* DTS2011070601052 zhaojunmin 20110705 end */
 /dev/smdcntl0             0640   radio      radio
 /dev/smdcntl1             0640   radio      radio
 /dev/smdcntl2             0640   radio      radio
@@ -154,27 +143,12 @@
 /sys/devices/virtual/input/input*   enable      0660  root   input
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
 
-#/*< DTS2011041700393 lijianzhao 20110417 begin */
-#modify for 4125 baseline
-#/* <DTS2011082704500 weizhonghui  20110827 begin */ 
-#/* <DTS2011072601736 weizhonghui  20110809 begin */ 
 /dev/block/mmcblk0p7      0660  system       system
-#/* DTS2011072601736 weizhonghui  20110809 end > */
-#/* DTS2011082704500 weizhonghui  20110827 end > */
 /dev/hw_extern_sdcard     0444  sdcard_rw    sdcard_rw
-#/* <DTS2011062802725 zhengzhechu 20110630 begin */
 /dev/hw_extern_sdcardMounted 0644	sdcard_rw   sdcard_rw
-#/* DTS2011062802725 zhengzhechu 20110630 end> */
 #/dev/phudiag              0664  system       system
 /dev/smem_sleep_log       0664	system       system
-#/* DTS2011041700393 lijianzhao 20110417 end >*/
-#/* < DTS2011051001634 caomingxing 20110510 begin */
-#/* < DTS2011031800077 yuezenglong 20110318 begin */
-#/* < DTS2011021601598 yuezenglong 20110216 begin */
 /dev/pn544                  0660   root   nfc
-#/* DTS2011021601598 yuezenglong 20110216 end > */
-#/* DTS2011031800077 yuezenglong 20110318 end >*/
-#/* DTS2011051001634 caomingxing 20110510 end > */
 /dev/genlock              0666   root      root
 /dev/ttyGS0               0660   system     system
 /dev/mtp_usb              0660   root       mtp
