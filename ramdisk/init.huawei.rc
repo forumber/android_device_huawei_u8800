@@ -124,12 +124,13 @@ service usbhub_init /system/bin/usbhub_init
 on property:ro.product.device=msm7630_fusion
     start usbhub_init
 
-on property:bluetooth.isEnabled=true
+on property:init.svc.bluetoothd=running
     start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-on property:bluetooth.isEnabled=false
-    stop btwlancoex
+# I'll edit this line when I know "disabled" command of init.svc.bluetoothd
+# on property:bluetooth.isEnabled=false
+#    stop btwlancoex
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -155,7 +156,7 @@ on property:ro.emmc=1
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class main
     user bluetooth
-    group qcom_oncrpc bluetooth net_bt_admin
+    group qcom_oncrpc bluetooth net_bt_admin system
     disabled
     oneshot
 
@@ -194,6 +195,7 @@ service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
     user system
     group system inet
     disabled
+    oneshot
 
 on property:ro.baseband="msm"
     # Enable BT-DUN only for all msms
