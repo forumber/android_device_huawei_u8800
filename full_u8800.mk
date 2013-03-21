@@ -75,8 +75,8 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw
 
 # GPS
-# PRODUCT_PACKAGES += \
-#	gps.u8800
+PRODUCT_PACKAGES += \
+	gps.u8800
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
