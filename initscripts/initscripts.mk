@@ -14,20 +14,13 @@
 
 # Warning: this is actually a product definition, to be inherited from.
 
-rootscripts := \
-	init.qcom.sh
-
 etcscripts := \
 	init.qcom.bt.sh \
 	init.qcom.coex.sh \
 	init.qcom.fm.sh \
 	init.qcom.post_boot.sh \
 	init.qcom.sdio.sh \
-	init.qcom.usb.sh \
 	init.qcom.wifi.sh
-
-PRODUCT_COPY_FILES += $(foreach file,$(rootscripts),\
-	$(LOCAL_PATH)/$(file):root/$(file))
 
 PRODUCT_COPY_FILES += $(foreach file,$(etcscripts),\
 	$(LOCAL_PATH)/$(file):system/etc/$(file))
