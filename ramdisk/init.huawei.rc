@@ -375,6 +375,10 @@ service thermald /system/bin/thermald
     group root
     disabled
 
+# When Wi-Fi driver starts loading, we will enable polling in SDC3.
+on property:wlan.driver.status=loading
+    write /sys/devices/platform/msm_sdcc.3/polling 1
+
 on property:persist.thermal.monitor=true
     start thermald
 

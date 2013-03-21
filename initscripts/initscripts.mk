@@ -19,7 +19,6 @@ etcscripts := \
 	init.qcom.coex.sh \
 	init.qcom.fm.sh \
 	init.qcom.post_boot.sh \
-	init.qcom.sdio.sh \
 	init.qcom.wifi.sh
 
 PRODUCT_COPY_FILES += $(foreach file,$(etcscripts),\
