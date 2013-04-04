@@ -1,0 +1,9 @@
+CM9 Device Tree for Huawei Ideos X5 (U8800)
+
+Not Working:
+1 - WiFi
+2 - Bluetooth (It shows turned up but it doesn't discover any device and doesn't connect)
+3 - Camera (It's working but doesn't detect SD Card so cannot take picture or video)
+4 - Gallery (It doesn't create thumbails)
+
+Other thinks are working good. 
