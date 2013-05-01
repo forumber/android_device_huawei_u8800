@@ -57,6 +57,3 @@ PRODUCT_COPY_FILES += \
 
 # Include initscripts
 $(call inherit-product-if-exists, device/huawei/u8800/initscripts/initscripts.mk)
-
-# Include keyboards
-$(call inherit-product-if-exists, device/huawei/u8800/keyboards/keyboards.mk)
