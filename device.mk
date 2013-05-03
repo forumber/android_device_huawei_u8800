@@ -20,8 +20,6 @@ $(call inherit-product-if-exists, vendor/huawei/u8800/u8800-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/huawei/u8800/overlay
 
-FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
-
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
