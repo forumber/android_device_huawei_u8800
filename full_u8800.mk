@@ -36,7 +36,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # USB mass storage
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.usb.config=mass_storage
+    persist.sys.usb.config=diag,adb,serial,rmnet_smd,mass_storage
 
 # ADB access
 ADDITIONAL_DEFAULT_PROPERTIES += \
