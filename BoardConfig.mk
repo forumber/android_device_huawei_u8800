@@ -112,9 +112,6 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # File System
 TARGET_USERIMAGES_USE_EXT4 := true
-
-# For bootmenu - not needed right now.
-#BOARD_USES_BOOTMENU := true
 BOARD_MMC_DEVICE := /dev/block/mmcblk0
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p13
 BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p12
