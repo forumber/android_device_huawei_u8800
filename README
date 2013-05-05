@@ -3,5 +3,6 @@ CM9 Device Tree for Huawei Ideos X5 (U8800)
 Not Working:
 1 - WiFi
 2 - Bluetooth (It shows turned up  and can get mac adress but it doesn't discover any device and doesn't connect)
+3 - Mobile Data
 
 Other thinks are working good. 
