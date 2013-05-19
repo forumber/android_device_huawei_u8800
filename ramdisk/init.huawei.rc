@@ -69,17 +69,23 @@ on boot
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+    
     symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
     symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
+    
     mkdir /data/hostapd 0770 root root
     chmod 0660 /data/hostapd/hostapd.conf
+    
     setprop wifi.interface wlan0
+    
     mkdir /data/wpstiles/ 0777 shell
     mkdir /data/wiper 0777 location qcom_oncrpc
+    
     chmod 0666 /dev/smd0
     chown radio radio /dev/smd0
     chmod 0660 /dev/smd7
     chown bluetooth bluetooth /dev/smd7
+    
     mkdir /data/system 0775 system system
 
     #Create QMUX deamon socket area
