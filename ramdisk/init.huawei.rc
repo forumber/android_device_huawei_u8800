@@ -80,6 +80,7 @@ on boot
     chown radio radio /dev/smd0
     chmod 0660 /dev/smd7
     chown bluetooth bluetooth /dev/smd7
+    mkdir /data/system 0775 system system
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
