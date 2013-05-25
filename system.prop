@@ -5,7 +5,8 @@
 rild.libpath=/system/lib/libril-qc-1.so
 rild.libargs=-d /dev/smd0
 ro.telephony.default_network=0
-ro.telephony.ril_class=HuaweiQualcommRIL
+ro.telephony.ril_class=QualcommSharedRIL
+mobiledata.interfaces=rmnet0,gprs,ppp0
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 
