@@ -385,6 +385,9 @@ service thermald /system/bin/thermald
 on property:wlan.driver.status=loading
     write /sys/devices/platform/msm_sdcc.3/polling 1
 
+on property:wlan.driver.status=unloaded
+    write /sys/devices/platform/msm_sdcc.3/polling 0
+
 on property:persist.thermal.monitor=true
     start thermald
 
