@@ -34,10 +34,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
         dalvik.vm.heapsize=128m \
         dalvik.vm.dexopt-data-only=1
 
-# USB mass storage
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.usb.config=diag,adb,serial,rmnet_smd,mass_storage
-
 # ADB access
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.service.adb.enable=1
