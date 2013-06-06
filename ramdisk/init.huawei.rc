@@ -34,7 +34,9 @@ on boot
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-    setprop wifi.interface eth0
+    setprop wifi.interface wlan0
+    symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
+    symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
 
 # To allow interfaces to get v6 address when tethering is enabled
     write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
@@ -148,15 +150,15 @@ service netmgrd /system/bin/netmgrd
     class main
     disabled
 
-service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext -ieth0 -c/data/misc/wifi/wpa_supplicant.conf -dd
+service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant Dnl80211 -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -dd
     class late_start
     user root
     group wifi inet
-    socket wpa_eth0 dgram 660 wifi wifi
+    socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
 
-service dhcpcd_eth0 /system/bin/dhcpcd -BKL
+service dhcpcd_wlan0 /system/bin/dhcpcd -BKL
     disabled
     oneshot
 
@@ -165,7 +167,7 @@ service dhcpcd_p2p /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
-service iprenew_eth0 /system/bin/dhcpcd -n
+service iprenew_wlan0 /system/bin/dhcpcd -n
     class main
     disabled
     oneshot

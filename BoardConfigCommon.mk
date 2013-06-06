@@ -73,15 +73,19 @@ WEBCORE_INPAGE_VIDEO := true
 
 # Wifi
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
-BOARD_WLAN_DEVICE                := bcm4329
-WIFI_DRIVER_MODULE_NAME          := "bcm4329"
-WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcm4329.ko"
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
-WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/vendor/firmware/nvram.txt"
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WLAN_DEVICE                := qcwcn
+WIFI_DRIVER_MODULE_PATH 		 := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME 		 := "wlan"
+WIFI_DRIVER_MODULE_ARG 			 := ""
+WIFI_EXT_MODULE_PATH 			 := "/system/lib/modules/librasdioif.ko"
+WIFI_EXT_MODULE_NAME 			 := "librasdioif"
+WIFI_EXT_MODULE_ARG 			 := ""
+WIFI_DRIVER_FW_PATH_STA 		 := "sta"
+WIFI_DRIVER_FW_PATH_AP 			 := "ap"
+WIFI_DRIVER_FW_PATH_P2P  		 := "p2p"
 BOARD_USE_SERNUM_FOR_MAC := true
+BOARD_HAS_QCOM_WLAN := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
