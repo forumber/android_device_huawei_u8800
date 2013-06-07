@@ -99,7 +99,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_GPS_LIBRARIES := libloc_api
 
 # Radio class.
-BOARD_RIL_CLASS := ../../../device/huawei/u8800/ril/
+BOARD_RIL_CLASS := ../../../device/huawei/msm7x30-common/ril/
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
