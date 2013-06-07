@@ -89,8 +89,8 @@ BOARD_HAS_QCOM_WLAN := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/msm7x30-common/bluetooth
+BOARD_HAVE_BLUETOOTH_BCM := false
+# BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/msm7x30-common/bluetooth
 
 # GPS
 BOARD_USES_QCOM_GPS := true
@@ -102,7 +102,6 @@ BOARD_GPS_LIBRARIES := libloc_api
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/huawei/honor
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
 BOARD_KERNEL_BASE := 0x00200000
@@ -111,7 +110,7 @@ BOARD_KERNEL_PAGESIZE := 4096
 # File System
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
 BOARD_VOLD_MAX_PARTITIONS := 14
@@ -119,11 +118,10 @@ BOARD_VOLD_MAX_PARTITIONS := 14
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 RECOVERY_CHARGEMODE := true
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
+BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TARGET_RECOVERY_INITRC := device/huawei/msm7x30-common/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := device/huawei/msm7x30-common/recovery_recovery.fstab
 BOARD_RECOVERY_RMT_STORAGE := true
-#BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/msm7x30-common/recovery/graphics_cn.c
 TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/msm7x30-common/recovery_kernel
 
 # Custom releasetools for old partition table.
