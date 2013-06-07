@@ -79,6 +79,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril_class=GBQualcommRIL \
     ril.subscription.types=NV,RUIM \
     ro.use_data_netmgrd=true \
     ro.config.ehrpd=true \
