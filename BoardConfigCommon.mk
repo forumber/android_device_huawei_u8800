@@ -106,7 +106,6 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
 TARGET_NO_KERNEL := false
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 TARGET_KERNEL_SOURCE := kernel/huawei/u8800
 TARGET_KERNEL_CONFIG := u8800_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
