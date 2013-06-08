@@ -125,7 +125,6 @@ BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 TARGET_RECOVERY_INITRC := device/huawei/msm7x30-common/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := device/huawei/msm7x30-common/recovery_recovery.fstab
 BOARD_RECOVERY_RMT_STORAGE := true
-TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/msm7x30-common/recovery_kernel
 
 # Custom releasetools for old partition table.
 TARGET_PROVIDES_RELEASETOOLS := true
