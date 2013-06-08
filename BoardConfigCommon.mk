@@ -105,6 +105,9 @@ BOARD_RIL_CLASS := ../../../device/huawei/msm7x30-common/ril/
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
+TARGET_NO_KERNEL := false
+TARGET_KERNEL_SOURCE := kernel/huawei/u8800
+TARGET_KERNEL_CONFIG := u8800_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
 BOARD_INSTALLER_CMDLINE := $(BOARD_KERNEL_CMDLINE)
 BOARD_KERNEL_BASE := 0x00200000
@@ -128,6 +131,3 @@ BOARD_RECOVERY_RMT_STORAGE := true
 
 # Custom releasetools for old partition table.
 TARGET_PROVIDES_RELEASETOOLS := true
-
-# ETC
-TARGET_SPECIFIC_HEADER_PATH := device/huawei/msm7x30-common/include
