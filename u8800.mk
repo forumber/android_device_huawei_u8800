@@ -152,24 +152,15 @@ PRODUCT_COPY_FILES += \
     device/huawei/u8800/ramdisk/init.qcom.sh:root/init.qcom.sh
 # ETC
 PRODUCT_COPY_FILES += \
-    device/huawei/u8800/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    device/huawei/u8800/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/huawei/u8800/prebuilt/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/huawei/u8800/prebuilt/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
     device/huawei/u8800/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/huawei/u8800/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/huawei/u8800/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
-    device/huawei/u8800/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
+    device/huawei/u8800/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
     
 # BLUETOOTH
 PRODUCT_COPY_FILES += \
-    device/huawei/u8800/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/huawei/u8800/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
-    
-# WIFI
-PRODUCT_COPY_FILES += \
-    device/huawei/u8800/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-
+  
 # Firmware
 PRODUCT_COPY_FILES += \
     device/huawei/u8800/prebuilt/etc/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
@@ -205,6 +196,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/huawei/u8800/prebuilt/lib/libdivxdrmdecrypt.so:system/lib/libdivxdrmdecrypt.so \
     device/huawei/u8800/prebuilt/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so
+
+# Configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab \
+    $(LOCAL_PATH)/configs/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+    $(LOCAL_PATH)/configs/qcom_cfg.ini:system/etc/firmware/wlan/qcom_cfg.ini \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
