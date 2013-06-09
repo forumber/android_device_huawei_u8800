@@ -15,10 +15,6 @@
 $(call inherit-product-if-exists, vendor/huawei/u8800/u8800-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += device/huawei/u8800/overlay
 
-
-# These are the hardware-specific features
-PRODUCT_COPY_FILES += \
-
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
