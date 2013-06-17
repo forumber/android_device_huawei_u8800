@@ -49,6 +49,10 @@ PRODUCT_PACKAGES += \
     libI420colorconvert \
     libc2dcolorconvert
 
+# Power
+PRODUCT_PACKAGES += \
+	power.huawei
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm7x30 \
