@@ -109,8 +109,12 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Kernel
 TARGET_NO_KERNEL := false
+<<<<<<< HEAD:BoardConfig.mk
 # TARGET_PREBUILT_KERNEL := device/huawei/u8800/kernel
 # TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/u8800/kernel
+=======
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+>>>>>>> parent of d3ae19e... BoardConfigCommon.mk: Disable use 4.4.3 toolchain.:BoardConfigCommon.mk
 TARGET_KERNEL_SOURCE := kernel/huawei/u8800
 TARGET_KERNEL_CONFIG := u8800_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=huawei
